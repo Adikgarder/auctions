@@ -4,39 +4,42 @@
 
 <div id="card-container">
     {% for listing in listings %}
-    <div class="card listing shadow overflow-hidden">
-        <a href="{% url 'view_listing' listing_id=listing.id %}" class="stretched-link"></a>
-        <img src="{% if not listing.image %}{{ default_image }}{% else %}{{ listing.image.url }}{% endif %}"
-            class="card-img h-100 object-fit-cover" data="{{ listing.image }}">
-        <div class="card-img-overlay d-flex flex-column justify-content-between">
-            <h5 class="card-title text-white">{{ listing.title }} (${{ listing.price }})</h5>
-            {% if not listing.active %}
-            <div class="text-center">
-                {% if listing.completed %}
-                <span class="complete d-block py-2">Sold!</span>
+    <div class="w3-card-4 ">
+        <div class="w3-display-container w3-text-white">
+            <img src="{% if not listing.image %}{{ default_image }}{% else %}{{ listing.image.url }}{% endif %}"
+                style="width:100%;height: 220px">
+            <div class="w3-xlarge w3-display-bottomleft w3-padding">
+                <h5 class="card-title text-white">{{ listing.category }}</h5>
+            </div>
+                <div class="w3-display-topright w3-container w3-padding-16 w3-green">
+                {% if not listing.active %}
+                <div class="text-center">
+                    {% if listing.completed %}
+                    <span >Sold!</span>
+                    {% else %}
+                    <span >Canceled</span>
+                    {% endif %}
+                </div>
                 {% else %}
-                <span class="closed d-block py-2">Canceled</span>
+                <span >Active!</span>
                 {% endif %}
             </div>
-            {% else %}
-            <div class="card-description mb-auto text-white">
-                {{ listing.description }}
-            </div>
-            {% endif %}
-            <div class="d-flex justify-content-between">
-                <div class="card-text d-inline-block text-white my-auto px-3 py-1 rounded-pill"
-                    style="background-color: #{{ listing.category.hex_color_code }}">
-                    {{ listing.category }}
-                </div>
-                <div class="card-text d-inline-block text-white fs-5 px-3 py-1">
-                    <span><i class="bi bi-eye-fill"></i> {{ listing.watchers.count }}</span>
-                    <span class="ps-3"><i class="bi bi-chat-left-fill"></i> {{ listing.comments.count }}</span>
-                    <span class="ps-3"><i class=" bi bi-cash-coin"></i> {{ listing.bids.count }}</span>
-                </div>
+
+        </div>
+        <div class="w3-container ">
+            <hr>
+            <p>{{ listing.title }}</p>
+            <p>{{ listing.description }}</p>
+            <p>{{ listing.price }} MZN</p>
+            <div class="">
+                <span><i class="bi bi-eye-fill"></i> {{ listing.watchers.count }}</span>
+                <span class="ps-3"><i class="bi bi-chat-left-fill"></i> {{ listing.comments.count }}</span>
+                <span class="ps-3"><i class=" bi bi-cash-coin"></i> {{ listing.bids.count }}</span>
             </div>
         </div>
+
     </div>
     {% empty %}
-   
+
     {% endfor %}
 </div>

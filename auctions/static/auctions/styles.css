@@ -276,9 +276,18 @@ footer {
     border-bottom: 1px solid #000;
 }
 
-.thumbnail:hover{
-    opacity:1.00;
+.thumbnail:hover {
+    opacity: 1.00;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: box-shadow 0.5s;
-    
-    }
+
+}
+.hr-line { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+  }
