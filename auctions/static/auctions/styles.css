@@ -52,8 +52,8 @@ a.nav-link.login-link {
 
 #loginForm,
 #registerForm {
-    max-width: 400px;
-    border-color: #0D6EFD;
+    width: 80%;
+    height: 600px;
 }
 
 /* Create Listing */
@@ -282,7 +282,8 @@ footer {
     transition: box-shadow 0.5s;
 
 }
-.hr-line { 
+
+.hr-line {
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -290,4 +291,9 @@ footer {
     margin-right: auto;
     border-style: inset;
     border-width: 1px;
-  }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

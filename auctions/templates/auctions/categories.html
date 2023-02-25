@@ -13,7 +13,13 @@
             class="category-row-item-container d-flex flex-column m-4 text-center text-reset text-decoration-none {% if category.id == current_category %}active{% endif %}">
             <div
                 class="category-row-item-image d-inline-flex align-items-center justify-content-center h-100 border rounded-circle">
+                {% if category.name == 'automoveis' %}
                 <i class="bi bi-car-front-fill"></i>
+                {% elif category.name == 'imoveis' %}
+                <i class="bi bi-house"></i>
+                {% else %}
+                <i class="bi bi-question"></i>
+                {% endif %}
             </div>
             <span class="fs-5 fw-bold">{{ category.name }}</span>
         </a>
@@ -27,8 +33,6 @@
     {% endif %}
 
 </div>
-
-
 <footer class="row text-center"></footer>
 {% endblock %}
 
