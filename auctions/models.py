@@ -1,11 +1,15 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
 
 
-class User(AbstractUser):
-    pass
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    contact = models.CharField(max_length=20)
+    address = models.CharField(max_length=255)
+    postal_code = models.CharField(max_length=10)
 
 class Listing(models.Model):
     title = models.CharField(
@@ -145,3 +149,5 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+

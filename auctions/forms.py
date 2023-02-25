@@ -17,3 +17,13 @@ class CreateListingForm(forms.ModelForm):
             "price": NumberInput({"class": "form-control w-50"}),
             "category": Select({"class": "form-control"}),
         }
+
+# TODO
+# class RegistrationForm(forms.ModelForm):
+#     contact = forms.CharField(max_length=20)
+#     address = forms.CharField(max_length=255)
+#     postal_code = forms.CharField(max_length=10)
+    
+#     class Meta:
+#         model = User
+#         fields = ['username', 'email', 'first_name', 'last_name', 'password']
