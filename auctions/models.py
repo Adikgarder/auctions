@@ -57,6 +57,16 @@ class Listing(models.Model):
         auto_now=True,
         help_text="When was this item listing last updated?",
     )
+    # begin_date = models.DateField(
+    #     null=True,
+    #     blank=True,
+    #     help_text="When should this item be available from?",
+    # )
+    # end_date = models.DateField(
+    #     null=True,
+    #     blank=True,
+    #     help_text="When should this item be available until?",
+    # )
 
     def __str__(self):
         return f"{self.id} - {self.title} (Active: {self.active})"  # type: ignore

@@ -23,6 +23,11 @@ body {
 
 /* Navbar Links */
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 a.nav-link.login-link {
     width: 150px;
 }
@@ -293,7 +298,3 @@ footer {
     border-width: 1px;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}

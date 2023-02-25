@@ -29,9 +29,13 @@
             </div>
             <div class="w3-container ">
                 <hr>
-                <p>{{ listing.title }}</p>
+                <h3>{{ listing.title }}</h3>
                 <p>{{ listing.description }}</p>
                 <p>{{ listing.price }} MZN</p>
+                <p>Start Date: {{ listing.created_at|date:"d-m-Y" }} </p>
+                <!-- Depois vais atualiozar quando atualizares o modelo -->
+                <p>End Date: {{ listing.created_at|date:"d-m-Y" }} </p>
+
                 <div class="">
                     <span><i class="bi bi-eye-fill"></i> {{ listing.watchers.count }}</span>
                     <span class="ps-3"><i class="bi bi-chat-left-fill"></i> {{ listing.comments.count }}</span>
