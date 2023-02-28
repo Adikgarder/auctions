@@ -19,11 +19,21 @@ class CreateListingForm(forms.ModelForm):
         }
 
 # TODO
-# class RegistrationForm(forms.ModelForm):
-#     contact = forms.CharField(max_length=20)
-#     address = forms.CharField(max_length=255)
-#     postal_code = forms.CharField(max_length=10)
+#class RegistrationForm(forms.ModelForm):
+   #  contact = forms.CharField(max_length=20)
+    # address = forms.CharField(max_length=255)
+    # postal_code = forms.CharField(max_length=10)
     
-#     class Meta:
-#         model = User
-#         fields = ['username', 'email', 'first_name', 'last_name', 'password']
+    #class Meta:
+      #  model = User
+        #fields = ['username', 'email', 'first_name', 'last_name', 'password']
+
+
+
+class RegistrationForm(forms.ModelForm):
+     class Meta:
+         model = UserProfile
+         fields = ['username', 'email', 'first_name', 'last_name', 'password']
+     contact = forms.CharField(max_length=20)
+     address = forms.CharField(max_length=255)
+     postal_code = forms.CharField(max_length=10)
