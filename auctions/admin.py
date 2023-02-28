@@ -27,6 +27,8 @@ class ListingAdmin(admin.ModelAdmin):
         "completed",
         "created_at",
         "updated_at",
+        # "begin_date",
+        # "end_date",
     )
     inlines = [
         WatcherInline,

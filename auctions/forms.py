@@ -18,22 +18,11 @@ class CreateListingForm(forms.ModelForm):
             "category": Select({"class": "form-control"}),
         }
 
-# TODO
-#class RegistrationForm(forms.ModelForm):
-   #  contact = forms.CharField(max_length=20)
-    # address = forms.CharField(max_length=255)
-    # postal_code = forms.CharField(max_length=10)
-    
-    #class Meta:
-      #  model = User
-        #fields = ['username', 'email', 'first_name', 'last_name', 'password']
-
-
-
 class RegistrationForm(forms.ModelForm):
      class Meta:
-         model = UserProfile
+         model = User
+         #adcionar os restantes dos fields aqui malta contacto 
          fields = ['username', 'email', 'first_name', 'last_name', 'password']
-     contact = forms.CharField(max_length=20)
-     address = forms.CharField(max_length=255)
-     postal_code = forms.CharField(max_length=10)
+    #  contact = forms.CharField(max_length=20)
+    #  address = forms.CharField(max_length=255)
+    #  postal_code = forms.CharField(max_length=10)

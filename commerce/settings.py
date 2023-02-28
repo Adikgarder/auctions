@@ -34,7 +34,6 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    "auctions",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -42,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_cleanup.apps.CleanupConfig",
+    "auctions",
+
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'auctions.User' 
+AUTH_USER_MODEL = 'auctions.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

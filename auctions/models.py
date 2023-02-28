@@ -1,18 +1,30 @@
-from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.contrib.auth.models import AbstractBaseUser
+# from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.conf import settings
+from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, AbstractUser
+from django.db import models
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, **extra_fields)
 
 class User(AbstractUser):
-   pass 
-
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     contact = models.CharField(max_length=20)
-#     address = models.CharField(max_length=255)
-#     postal_code = models.CharField(max_length=10)
+    # contact = models.CharField(max_length=20)
+    # postal_code = models.CharField(max_length=10)
+    # address = models.CharField(max_length=255)
+    pass
 
 class Listing(models.Model):
     title = models.CharField(
@@ -65,18 +77,16 @@ class Listing(models.Model):
         auto_now=True,
         help_text="When was this item listing last updated?",
     )
-    begin_date = models.DateField(
-    null=True,
-    blank=True,
-    help_text="When should this item be available from?",
-    )
-    end_date = models.DateField(
-        null=True,
-        blank=True,
-        help_text="When should this item be available until?",
-     )
-
-
+    # begin_date = models.DateField(
+    # null=True,
+    # blank=True,
+    # help_text="When should this item be available from?",
+    # )
+    # end_date = models.DateField(
+    #     null=True,
+    #     blank=True,
+    #     help_text="When should this item be available until?",
+    #  )
 
     def __str__(self):
         
@@ -158,23 +168,17 @@ class Category(models.Model):
         return self.name
     
 
-    class RegistrationForm(UserCreationForm):
-     email = forms.EmailField(required=True)
 
-    class Meta:
-        model = UserProfile
-        fields = (
-            'username', 
-            'email',
-            'first_name',
-             'last_name',
-            'password'
-        )
+# class RegistrationForm(UserCreationForm):
+#     email = models.EmailField(required=True)
 
-    def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
+#     class Meta:
+#         model = User
+#         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#         user.email = self.cleaned_data['email']
+#         if commit:
+#             user.save()
+#         return user
