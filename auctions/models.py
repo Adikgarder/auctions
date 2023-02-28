@@ -2,8 +2,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.conf import settings
 
-
+class User(AbstractUser):
+   pass 
 
 # class UserProfile(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,6 +19,7 @@ class Listing(models.Model):
         max_length=53,
         help_text="What would you like to offer to sell? (50 characters maximum)",
     )
+    
     description = models.TextField(
         max_length=540,
         help_text="How would you descibe your item? (500 characters maximum)",
@@ -61,18 +65,21 @@ class Listing(models.Model):
         auto_now=True,
         help_text="When was this item listing last updated?",
     )
-    # begin_date = models.DateField(
-    #     null=True,
-    #     blank=True,
-    #     help_text="When should this item be available from?",
-    # )
-    # end_date = models.DateField(
-    #     null=True,
-    #     blank=True,
-    #     help_text="When should this item be available until?",
-    # )
+    begin_date = models.DateField(
+    null=True,
+    blank=True,
+    help_text="When should this item be available from?",
+    )
+    end_date = models.DateField(
+        null=True,
+        blank=True,
+        help_text="When should this item be available until?",
+     )
+
+
 
     def __str__(self):
+        
         return f"{self.id} - {self.title} (Active: {self.active})"  # type: ignore
 
 
@@ -149,5 +156,25 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
 
+    class RegistrationForm(UserCreationForm):
+     email = forms.EmailField(required=True)
+
+    class Meta:
+        model = UserProfile
+        fields = (
+            'username', 
+            'email',
+            'first_name',
+             'last_name',
+            'password'
+        )
+
+    def save(self, commit=True):
+        user = super(RegistrationForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
 
